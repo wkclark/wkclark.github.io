@@ -1,27 +1,38 @@
+.ksitebar {
+  position: relative;
+  width: 100%;
+}
 /*Style the heading*/
 h1 {
-  margin: 5px;
-  padding: 5px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 40px;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  font-family: 'Ewert', cursive;
+  font-size: 60px;
+}
+body {
+  background-color: rgb(204, 232, 255);
 }
 
+p {
+  font-family: 'Open Sans', sans-serif;
+}
 /*Create a horizontal list with spacing*/
 li {
   display:inline-block;
-  float: left;
-  margin-right: 1px;
+  width: 33%;
+  margin: auto;
 }
 /*Style for menu links*/
 li a {
   display:block;
-  width:200px;
+  width:100%;
   height: 100px;
   text-align: center;
   line-height: 100px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: fff;
-  background: #85dcfc;
+  background: #86ddfc;
   text-decoration: none;
 }
 /*Hover state for top level links*/
@@ -61,7 +72,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 /*Style 'show menu' label button and hide it by default*/
 .show-menu {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   text-decoration: none;
   color: #000000;
   background: #85dcfc;
