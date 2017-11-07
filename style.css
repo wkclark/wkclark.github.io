@@ -1,0 +1,13 @@
+h1 {
+  font-family: 'Merriweather', serif;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+.nav-wrapper {
+  font-family: 'Merriweather', serif;
+}
+img {
+  height: 100%;
+    width: 100%;
+}
