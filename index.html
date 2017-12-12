@@ -1,46 +1,126 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="UTF-8">
+  <title>Peter Davi, Renowned Surfer, Is Dead at 45</title>
+   <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:400,400i" rel="stylesheet">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Add Meta Viewport Tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kirill's Site</title>
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-  <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <!-- Compiled and minified Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Compiled and minified Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+
 </head>
-
 <body>
-
-  <div class="container">
-    <div class="row">
-      <div class="col m12">
-        <h1>Kirill's Site</h1>
-        <img src="files/bigsur.jpg">
-      </div>
-    </div>
-
-      <nav>
-        <div class="nav-wrapper">
-          <ul id="nav-mobile">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="aboutme.html">About Me</a></li>
-            <li><a href="resume.html">Resume</a></li>
-          </ul>
-        </div>
-      </nav>
-
-    <div class="row">
-      <div class="col m12">
-        <p>Welcome to my Website!</p>
-      </div>
+  <div class="parallax-container">
+       <div class="parallax"><img src="header.jpg"></div>
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <h1>Peter Davi, Renowned Surfer, Is Dead at 45</h1>
+      <h6>By MATT HIGGINS &nbsp;&nbsp;&nbsp; DEC. 8, 2007</h6>
     </div>
   </div>
+  <div class="row">
+      <div class="col m12">
+        <p>Peter Davi, a renowned big-wave surfer from Monterey, died Tuesday while riding giant waves at a spot he had helped pioneer off Pebble Beach, Calif. He was 45.</p>
+        <p>The cause was drowning, said Detective Ruben Garcia of the Monterey County Coroner's Office. He said Davi had first sustained head and chest injuries, probably from being dashed against jagged rocks by powerful waves at the surf break, which is known both as Ghost Trees and Pescadero Point.</p>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col m12">
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var pescadero = new google.maps.LatLng(36.5608, -121.9516);
 
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: pescadero,
+              zoom: 11
+            });
+
+            var coordInfoWindow = new google.maps.InfoWindow();
+            coordInfoWindow.setContent(createInfoWindowContent(pescadero, map.getZoom()));
+            coordInfoWindow.setPosition(pescadero);
+            coordInfoWindow.open(map);
+
+            map.addListener('zoom_changed', function() {
+              coordInfoWindow.setContent(createInfoWindowContent(pescadero, map.getZoom()));
+              coordInfoWindow.open(map);
+            });
+          }
+
+          var TILE_SIZE = 256;
+
+          function createInfoWindowContent(latLng, zoom) {
+            var scale = 1 << zoom;
+
+            var worldCoordinate = project(latLng);
+
+            var pixelCoordinate = new google.maps.Point(
+                Math.floor(worldCoordinate.x * scale),
+                Math.floor(worldCoordinate.y * scale));
+
+            var tileCoordinate = new google.maps.Point(
+                Math.floor(worldCoordinate.x * scale / TILE_SIZE),
+                Math.floor(worldCoordinate.y * scale / TILE_SIZE));
+
+            return [
+              'Pescadero Point',
+              'Pebble Beach, CA',
+            ].join('<br>');
+          }
+
+          // The mapping between latitude, longitude and pixels is defined by the web
+          // mercator projection.
+          function project(latLng) {
+            var siny = Math.sin(latLng.lat() * Math.PI / 180);
+
+            // Truncating to 0.9999 effectively limits latitude to 89.189. This is
+            // about a third of a tile past the edge of the world tile.
+            siny = Math.min(Math.max(siny, -0.9999), 0.9999);
+
+            return new google.maps.Point(
+                TILE_SIZE * (0.5 + latLng.lng() / 360),
+                TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)));
+          }
+        </script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo_bPtuRi0iywuRER967IwQq5bwJmK6r0&callback=initMap" type="text/javascript"></script>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col m12">
+        <p>Fellow surfers lost track of Davi in the water, but later discovered him floating without his surfboard in a kelp bed in Stillwater Cove. The leash that tethered his board to his leg had snapped. Attempts to revive him were unsuccessful.</p>
+        <p>Davi had joined a group of about 20 surfers at the noted spot near the Pebble Beach Golf Links to ride waves up to 70 feet tall. The waves had been whipped up by a winter storm.</p>
+        <p>The surfers were using personal watercraft to tow one another into waves that were considered too large and fast-moving for conventional paddling. But witnesses said Davi had nevertheless planned to paddle into a wave and ride it to shore. He was last seen swimming to shore.</p>
+        <p>In the surfing community around Monterey and Big Sur, Davi was regarded by many as a kind of unofficial mayor. At 6 feet 3 inches and 240 pounds, his duties sometimes included maintaining order and safety in the surf. With a combination of intimidating size and charisma, he seldom had to do more than ask people politely to behave.</p>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col m12">
+        <img id="photo" src="image2.jpg" alt="photo of Peter" class="responsive-img">
+      </div>
+  </div>
+  <div class="row">
+      <div class="col m12">
+        <p>But Davi was also respected for his courage and his skill in riding big waves. In the early 1990s, he was among a clutch of surfers to ride regularly at a treacherous spot called Mavericks, 100 miles north of Monterey at Half Moon Bay. He gained prominence at big-wave spots on the North Shore of Oahu, including Banzai Pipeline, where respect is hard won from local Hawaiians. And he was among the first to ride at Ghost Trees, where he died.</p>
+        <p>He is survived by a son, Jake Kai, of Oahu and Monterey, his brother, James, and his sisters Marijane Flagg, Josefa Davi Nolan, Karen VanBrabant and Michele Davi Payne.</p>
+        <p>Davi was born in San Francisco on Jan. 5, 1962. He grew up on the Monterey Peninsula, where his life revolved around the sea. He began surfing as a teenager and was a professional surfer until about seven years ago, when he turned to fishing.</p>
+        <p>A fourth-generation commercial fisherman, he came from a prominent Sicilian-American family in Monterey. In a 2004 article about the tradition of sardine fishing in Monterey Bay, Davi told The Oakland Tribune that he first fished as a teenager while visiting family members in Sicily.</p>
+        <p>"I love it," he said about fishing.</p> <blockquote>"I like being at sea."</blockquote>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col m12">
+      <img id="photo" src="ring.jpg" alt="paddle-out for Peter" class="responsive-img">
+      </div>
+  </div>
+</div>
 </body>
-
-</html>
